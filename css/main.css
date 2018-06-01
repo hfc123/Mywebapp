@@ -1,0 +1,17 @@
+
+
+.card{
+	margin: 0px;
+	width: 100%;
+}
+.card2{
+	width: 80%;
+	margin: auto;
+	display: block;
+	margin-top: 20px;
+	border-radius: 15px;
+}
+.information{
+	background: deepskyblue;
+	height: 300vm;
+}

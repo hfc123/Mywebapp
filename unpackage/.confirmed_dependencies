@@ -1,0 +1,12 @@
+{
+  "index.html": {
+    "resources": [
+      "home.html"
+    ],
+    "refer": [
+      "set.html",
+      "home.html",
+      "job.html"
+    ]
+  }
+}

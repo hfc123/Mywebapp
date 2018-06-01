@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+
+	</head>
+
+	<body>
+		<!--标题栏-->
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" id="title">首页</h1>
+		</header>
+	
+		<!--底部导航栏-->
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" id="index.html" href="index.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" id="job.html" href="job.html">
+				<span class="mui-icon  iconfont icon-msnui-computer"></span>
+				<span class="mui-tab-label">工作</span>
+			</a>
+
+			<a class="mui-tab-item" id="set.html" href="set.html">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+		<script type="text/javascript">
+			mui.init({
+				statusBarBackground: '#f7f7f7'
+			});
+			var aniShow = "pop-in";
+			var menu = null,
+				showMenu = false;
+			var isInTransition = false;
+			var _self;
+			//只有ios支持的功能需要在Android平台隐藏；
+			if(mui.os.android) {
+				var list = document.querySelectorAll('.ios-only');
+				if(list) {
+					for(var i = 0; i < list.length; i++) {
+						list[i].style.display = 'none';
+					}
+				}
+				//Android平台暂时使用slide-in-right动画
+				if(parseFloat(mui.os.version) < 4.4) {
+					aniShow = "slide-in-right";
+				}
+			}
+				//所有选择卡
+      	var subpages = ['home.html','job.html', 'set.html'];
+      	var subpage_style = {
+		    top: '45px',  
+		    bottom: '51px'  
+		}; 
+		
+		
+      	//创建子页面，显示首页选择卡，隐藏其余页面
+      	mui.plusReady( function(){
+      		var self = plus.webview.currentWebview();
+      		for (var i = 0; i < subpages.length; i++){
+      			var sub = plus.webview.create(subpages[i],subpages[i],subpage_style);
+      			if (i >0){	//隐藏其他页面
+      				sub.hide(); 
+      			}
+      			self.append(sub); //加入子页面
+      		}
+      		
+      		//选择卡切换
+      		var changeTab = function(e,targetTab){
+      			var curTab = document.getElementsByClassName('mui-active')[0].getAttribute('href');
+      			var curWebView = plus.webview.getWebviewById(curTab);
+	      		var targetWebView = plus.webview.getWebviewById(targetTab);
+	      		if (targetWebView == curWebView){ 
+	      			// 传递 回到顶部 自定义事件（需要 触发 loaded 事件之后 fire 才生效，即页面加载完毕才生效）
+	      			mui.fire(targetWebView,'backTop',{});
+	      			return ;
+	      		}
+	      		//更换标题  
+				var title = document.getElementById('title');
+//				if (targetTab == 'login.html')
+//	      			title.innerHTML = '登录';
+//				else
+	      			title.innerHTML = e.querySelector('.mui-tab-label').innerHTML;
+	      		//显示目标选择卡
+	      		targetWebView.show();
+	      		//隐藏原选择卡
+	      		curWebView.hide();
+      		};
+      		// 监听选择卡点击事件 
+	      	mui('.mui-bar-tab').on('tap','a',function(e){
+	      		// 获取目标选择卡id
+	      		var targetTab = this.getAttribute('href');
+	      		console.log(targetTab)
+//	      		if (targetTab == 'chat.html' && JSON.stringify(app.getState()) == '{}' ){
+//	      			// 未登录
+//    				targetTab = 'login.html';
+//	      		}
+	      		// 切换选择卡
+	      		changeTab(this,targetTab);
+	      	});
+      	});
+			 
+		</script>
+	</body>
+
+</html>
