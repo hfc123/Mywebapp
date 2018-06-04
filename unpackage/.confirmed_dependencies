@@ -11,7 +11,8 @@
 	},
 	"home.html": {
 		"refer": [
-			"wuzi.html"
+			"wuzi.html",
+			"kucun.html"
 		]
 	},
 	"wuzi.html": {

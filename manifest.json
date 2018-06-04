@@ -141,7 +141,8 @@
 			"home.html": {
 				"resources": [],
 				"refer": [
-					"wuzi.html"
+					"wuzi.html",
+					"kucun.html"
 				],
 				"priority": 0
 			},
