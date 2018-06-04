@@ -137,6 +137,20 @@
 					"job.html"
 				],
 				"priority": 0
+			},
+			"home.html": {
+				"resources": [],
+				"refer": [
+					"wuzi.html"
+				],
+				"priority": 0
+			},
+			"wuzi.html": {
+				"resources": [
+					"pullrefresh_sub.html"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {

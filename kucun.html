@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+			<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">库存查询</h1>
+		</header>
+
+	<div class="mui-content">
+		<p style="margin-top: 20px;">请填写使用上报信息</p>
+		<ul class="mui-table-view">
+    <li class="mui-table-view-cell cell3">
+        <a class="mui-navigate-right">物料类别
+                <p style="float: right;margin-right: 20px;">请选择（必填）</p></a>
+    </li>
+    <li class="mui-table-view-cell cell3">
+        <a class="mui-navigate-right">实物名称
+                <p style="float: right;margin-right: 20px;">请选择（必填）</p></a>
+    </li>
+    <li class="mui-table-view-cell cell3">
+        <a class="mui-navigate-right">物料型号
+                 <p style="float: right;margin-right: 20px;">请选择（必填）</p>
+        </a>
+     
+    </li>
+     <li class="mui-table-view-cell">
+        <a class="mui-navigate-right cell3">使用数量
+           <p style="float: right;margin-right: 20px;">请选择（必填）</p>
+        </a>
+     
+    </li>
+    
+</ul>
+ <div class="mui-content">
+ <ul class="mui-table-view">
+ 	   <li class="mui-table-view-cell cell3" >
+        <a class="mui-navigate-right">开始时间
+                 <p style="float: right;margin-right: 20px;">请选择（必填）</p>
+        </a>
+     
+    </li>
+     <li class="mui-table-view-cell cell3">
+        <a class="mui-navigate-right">结束时间
+           <p style="float: right;margin-right: 20px;">请选择（必填）</p>
+        </a>
+
+    </li>
+    </ul>
+    
+ </div>
+ 	<textarea id="textarea" style="margin-top: 20px;height: 90px;">
+ 		
+ 	</textarea>
+ 	<button type="button" class="mui-btn mui-btn-outlined" style="position: fixed; bottom: 0;left: 0;right: 0;width: 100%;height: 7%;background: white;font-size: 1.5em;text-align: center;">提交</button>
+	</div>
+	<div id="sheet4" class="mui-popover mui-popover-bottom mui-popover-action">
+    <!-- 可选择菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell cell4">
+        <a href="">name1</a>
+      </li>
+      <li class="mui-table-view-cell cell4">
+        <a href="">name2</a>
+      </li>
+    </ul>
+    <!-- 取消菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell">
+        <a href="#sheet4"><b>取消</b></a>
+      </li>
+    </ul>
+</div>
+	<script type="text/javascript">
+		mui(document.body).on('tap', '.mui-btn', function(e) {
+    mui(this).button('loading');
+    setTimeout(function() {
+        mui(this).button('reset');
+        mui.alert("提交成功","提示","确定",null,"div")
+    }.bind(this), 2000);
+});
+var currentid=null;
+mui(document.body).on('tap','.cell3',function(e){
+
+  	  mui('#sheet4').popover('toggle');
+  	  currentid=this.getElementsByTagName("p")[0];
+  	 console.log(this.getElementsByTagName("p")[0].innerHTML)
+}) 
+mui('#sheet4').on('tap','.cell4',function(e){
+	
+	 mui('#sheet4').popover('toggle');	
+	 currentid.innerHTML=this.getElementsByTagName("a")[0].innerHTML
+	 console.log("111")
+	
+	})
+
+	</script>
+	</body>
+</html>

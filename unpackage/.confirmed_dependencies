@@ -1,12 +1,25 @@
 {
-  "index.html": {
-    "resources": [
-      "home.html"
-    ],
-    "refer": [
-      "set.html",
-      "home.html",
-      "job.html"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"home.html"
+		],
+		"refer": [
+			"set.html",
+			"home.html",
+			"job.html"
+		]
+	},
+	"home.html": {
+		"refer": [
+			"wuzi.html"
+		]
+	},
+	"wuzi.html": {
+		"resources": [
+			"pullrefresh_sub.html"
+		],
+		"refer": [
+			"pullrefresh_sub.html"
+		]
+	}
 }

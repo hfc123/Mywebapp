@@ -33,8 +33,8 @@
 			<!--页眉，放置标题-->
 			<!--<div class="mui-card-header">页眉</div>-->
 			<!--内容区-->
-			<div class="mui-card-content  mui-card-media" style="margin: 0px;height:30vw;border-radius:10px;">
-				<img style="width: 100%;height: 100%;" src="img/banner1.png" />
+			<div id="img1"class="mui-card-content  mui-card-media" style="margin: 0px;height:30vw;border-radius:10px;">
+				<img  style="width: 100%;height: 100%;" src="img/banner1.png" />
 			</div>
 			<!--页脚，放置补充信息或支持的操作-->
 		</div>
@@ -43,10 +43,78 @@
 			<!--页眉，放置标题-->
 			<!--<div class="mui-card-header">页眉</div>-->
 			<!--内容区-->
-			<div class="mui-card-content  mui-card-media " style="margin: 0px;height:30vw;">
-				<img style="width: 100%;height: 100%;" src="img/banner2.png" />
+			<div id="img2" class="mui-card-content  mui-card-media " style="margin: 0px;height:30vw;">
+				<img class="img2" style="width: 100%;height: 100%;" src="img/banner2.png" />
 			</div>
 			<!--页脚，放置补充信息或支持的操作-->
 		</div>
+
+<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action">
+    <!-- 可选择菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell cell1">
+        <a href="kucun.html">库存1</a>
+      </li>
+      <li class="mui-table-view-cell cell1">
+        <a href="kucun.html">库存2</a>
+      </li>
+    </ul>
+    <!-- 取消菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell">
+        <a href="#sheet1"><b>取消</b></a>
+      </li>
+    </ul>
+</div>
+<div id="sheet3" class="mui-popover mui-popover-bottom mui-popover-action">
+    <!-- 可选择菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell cell1">
+        <a href="wuzi.html">物资1</a>
+      </li>
+      <li class="mui-table-view-cell cell1">
+        <a href="wuzi.html">物资2</a>
+      </li>
+    </ul>
+    <!-- 取消菜单 -->
+    <ul class="mui-table-view">
+      <li class="mui-table-view-cell">
+        <a href="#sheet3"><b>取消</b></a>
+      </li>
+    </ul>
+</div>
+<script type="text/javascript">
+	mui('#img1').on('tap','img',function(e){
+	 // console.log("111")
+	  //alert('进来mui.js绑定事件了');
+	   mui('#sheet1').popover('toggle');
+	}) 
+	mui('#img2').on('tap','img',function(e){
+	// console.log("222")
+	  //alert('进来mui.js绑定事件了');
+	    mui('#sheet3').popover('toggle');	 
+	}) 
+	//actionsheet点击事件
+	mui('#sheet1').on('tap','.cell1',function(e){
+	 		 mui('#sheet1').popover('toggle');	
+	 // console.log("111")
+	  //alert('进来mui.js绑定事件了');
+    mui.openWindow({
+		url:'kucun.html',		
+		id:'kucun.html'
+});
+	//actionsheet点击事件 
+	})
+	mui('#sheet3').on('tap','.cell1',function(e){
+	 		 mui('#sheet3').popover('toggle');	
+	 // console.log("111")
+	  //alert('进来mui.js绑定事件了');
+    mui.openWindow({
+		url:'wuzi.html',		
+		id:'wuzi.html'
+});
+	})
+</script>
 	</body>
+	
 </html>

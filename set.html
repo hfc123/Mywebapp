@@ -17,13 +17,37 @@
 					
 				}
 				.head img{
+					float: left;
 					margin-top: 1.35rem;
 					margin-left: 0.5rem;
 					width: 2rem;
 					height: 2rem;
+				}
+				.name{
+					padding-top: 1.8rem;
+					margin-left: 3rem;
 				
 				}
+				.name h5{
+						font-size: 0.4rem;
+				}
+				.title{
+					height: 0.5rem;
+					position: relative;
+				}
+				.title img{
+					float: left;
+					height: 0.5rem;
 				
+				}
+				.title span{
+					float: left;
+					height: 0.5rem;
+					line-height: 0.5rem;
+				}
+			.mui-table-view-cell:after{
+				left: 0px;
+			}
 		</style>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
@@ -54,9 +78,38 @@
 		<div class="head">
 			
 			<img  src="img/ic_launcher_round.png" />
-			<h5>姓名</h5>
+			<div class="mui-media-body name">
+		     <h5>姓名</h5>
 			<h5>电话号码</h5>
+			</div>
+			
 		</div>
+	
+</div>
+		<ul class="mui-table-view">
+    <li class="mui-table-view-cell" style="margin-top: 0.2rem;">
+
+        <a class="mui-navigate-right" >	
+        	<div class="title">
+        		<img   src="img/ic_launcher_round.png" />	          
+	        <span> 个人信息</span>
+        	</div>
+        	
+        </a>
+    </li>
+    
+      <li class="mui-table-view-cell">
+
+        <a class="mui-navigate-right" style="padding: 0px;margin: 0px;">	
+        	<div class="title">
+        		<img   src="img/ic_launcher_round.png" />	          
+	        <span> 修改密码</span>
+        	</div>	
+        </a>
+    </li>
+</ul>
+    <button type="button" class="mui-btn" style="margin-top: 0.2rem;width: 100%;
+    	border-radius: 0px;height: 0.9rem;font-size: 0.4rem;">退出登录</button>
 	</body>
 
 </html>

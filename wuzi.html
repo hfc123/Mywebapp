@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<style type="text/css">
+			/*更改刷新文字的位置*/
+			.mui-bar-nav ~ .mui-content .mui-pull-top-pocket{
+  top: 80px !important;
+}
+		</style>
+	</head>
+	<body>
+		<div id="wuzi">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">物资上报</h1>
+		</header>
+		<div class="mui-content">
+	<div class="mui-input-row mui-search mui-plus-visible" >
+	<input id="search" onkeyup="enterSearch(event)" type="search" class="mui-input-speech mui-input-clear" placeholder="带语音输入的搜索框">
+     </div>
+		</div>
+		</div>
+		
+	<script type="text/javascript">
+		//rem适配
+		(function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                if(clientWidth>=750){
+                    docEl.style.fontSize = '100px';
+                }else{
+                    docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                }
+            };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+			//语音识别搜素框
+		 //语音识别完成事件
+			document.getElementById("search").addEventListener('recognized', function(e) {
+				console.log(e.detail.value);
+				
+			});
+
+			var nativeWebview, imm, InputMethodManager;
+			var initNativeObjects = function() {
+				if (mui.os.android) {
+					var main = plus.android.runtimeMainActivity();
+					var Context = plus.android.importClass("android.content.Context");
+					InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+					imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+				} else {
+					nativeWebview = plus.webview.currentWebview().nativeInstanceObject();
+				}
+			};
+			var showSoftInput = function() {
+				if (mui.os.android) {
+					imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+				} else {
+					nativeWebview.plusCallMethod({
+						"setKeyboardDisplayRequiresUserAction": false
+					});
+				}
+				setTimeout(function() {
+					var inputElem = document.querySelector('input');
+					inputElem.focus();
+					inputElem.parentNode.classList.add('mui-active'); //第一个是search，加上激活样式
+				}, 200);
+			};
+			mui.plusReady(function() {
+				initNativeObjects();
+				showSoftInput();
+			});
+			
+			//下拉刷新上拉加载
+			//启用双击监听 主页面内容比较简单，只需要创建子页面即可
+		mui.init({
+			gestureConfig:{
+				doubletap:true
+			},
+			subpages:[{
+				url:'pullrefresh_sub.html',
+				id:'pullrefresh_sub.html',
+				styles:{
+					top: '80px',
+					bottom: '0px',
+				}
+			}]
+		});
+		var detailPage=null;
+		function enterSearch(e) {
+    if(e.keyCode == 13) {
+       console.log(document.getElementById("search").value);
+      var  searchtxt=  document.getElementById("search").value
+       if(!detailPage){
+    detailPage = plus.webview.getWebviewById('pullrefresh_sub.html');
+  //触发详情页面的newsId事件
+       }
+  mui.fire(detailPage,'newsId',{
+    id:searchtxt
+  });
+    }
+}
+	</script>
+	</body>
+</html>
